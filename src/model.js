@@ -34,7 +34,7 @@ const filterConditions = (conditions) => {
 
   /**Check if a specific key is in the conditions object,
    * which means it represents the conditions of a day
-  */
+   */
   if ("tempmax" in conditions) {
     const dayKeys = ["datetime", "description", "tempmax", "tempmin"];
     relevantKeys = relevantKeys.concat(dayKeys);
@@ -45,4 +45,18 @@ const filterConditions = (conditions) => {
   return filteredConditions;
 };
 
-export { fetchWeatherData, filterConditions };
+const filterWeatherData = (weatherData) => {
+  const filteredData = {};
+  const relevantKeys = ["currentConditions", "days", "resolvedAddress"];
+
+  relevantKeys.forEach((key) => (filteredData[key] = weatherData[key]));
+
+  filteredData.currentConditions = filterConditions(
+    filteredData.currentConditions,
+  );
+  filteredData.days = filteredData.days.map((day) => filterConditions(day));
+
+  return filteredData;
+};
+
+export { fetchWeatherData, filterWeatherData };
