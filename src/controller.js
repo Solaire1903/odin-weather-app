@@ -1,4 +1,4 @@
-import { fetchWeatherData, filterWeatherData} from "./model.js";
+import { fetchWeatherData, filterWeatherData } from "./model.js";
 
 /**
  * Initializes and loads the app
