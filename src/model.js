@@ -26,12 +26,21 @@ const fetchWeatherData = async (location) => {
  * Filters a given object representing the weather conditions to
  * only hold the relevant data for the app
  * @param {object} conditions The conditions object to filter
+ * @return {object} The filtered conditions object
  */
 const filterConditions = (conditions) => {
   const filteredConditions = {};
-  const relevantKeys = ["feelslike", "icon", "temp"];
+  let relevantKeys = ["icon", "temp", "feelslike"];
 
-  relevantKeys.forEach((key) => filteredConditions[key] = conditions[key]);
+  /**Check if a specific key is in the conditions object,
+   * which means it represents the conditions of a day
+  */
+  if ("tempmax" in conditions) {
+    const dayKeys = ["datetime", "description", "tempmax", "tempmin"];
+    relevantKeys = relevantKeys.concat(dayKeys);
+  }
+
+  relevantKeys.forEach((key) => (filteredConditions[key] = conditions[key]));
 
   return filteredConditions;
 };
