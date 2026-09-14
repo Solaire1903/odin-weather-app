@@ -1,10 +1,12 @@
-import fetchWeatherData from "./model.js";
+import { fetchWeatherData, filterConditions } from "./model.js";
 
 /**
  * Initializes and loads the app
  */
 const loadApp = async () => {
-  console.log(await fetchWeatherData("Essen"));
+  const weatherData = await fetchWeatherData("Essen");
+  const currentConditions = weatherData.currentConditions;
+  console.log(filterConditions(currentConditions));
 };
 
 export default loadApp;

@@ -22,4 +22,18 @@ const fetchWeatherData = async (location) => {
   return weatherData;
 };
 
-export default fetchWeatherData;
+/**
+ * Filters a given object representing the weather conditions to
+ * only hold the relevant data for the app
+ * @param {object} conditions The conditions object to filter
+ */
+const filterConditions = (conditions) => {
+  const filteredConditions = {};
+  const relevantKeys = ["feelslike", "icon", "temp"];
+
+  relevantKeys.forEach((key) => filteredConditions[key] = conditions[key]);
+
+  return filteredConditions;
+};
+
+export { fetchWeatherData, filterConditions };
