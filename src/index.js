@@ -1,3 +1,4 @@
+import loadApp from "./controller.js";
 import "./styles.css";
 
-console.log("Template working");
+loadApp();
