@@ -1,7 +1,7 @@
-import getWeatherData from "./model.js";
+import fetchWeatherData from "./model.js";
 
-const loadApp = () => {
-  getWeatherData("Essen");
+const loadApp = async () => {
+  console.log(await fetchWeatherData("Essen"));
 };
 
 export default loadApp;
