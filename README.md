@@ -1,1 +1,1 @@
-Template repository for webpack based projects
+Weather App for the Odin Project curriculum
