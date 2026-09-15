@@ -1,4 +1,17 @@
 /**
+ * Capitalizes the first letters of a string
+ * (first letter and every letter after a whitespace)
+ * @param string The string to capitalize
+ * @return The new capitalized string
+ */
+const capitalizeFirstLetters = (string) => {
+  let words = string.trim().split(" ");
+  words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
+
+  return words.join(" ");
+};
+
+/**
  * Fetches weather data of a given location from the Visual Crossing API
  * @param {string} location The location to fetch the weather data of
  * @returns The fetched weather data, or the status code in case of an HTTP error
@@ -63,6 +76,9 @@ const filterWeatherData = (weatherData) => {
     filteredData.currentConditions,
   );
   filteredData.days = filteredData.days.map((day) => filterConditions(day));
+  filteredData.resolvedAddress = capitalizeFirstLetters(
+    filteredData.resolvedAddress,
+  );
 
   return filteredData;
 };
