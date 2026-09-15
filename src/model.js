@@ -68,7 +68,12 @@ const filterConditions = (conditions) => {
  */
 const filterWeatherData = (weatherData) => {
   const filteredData = {};
-  const relevantKeys = ["currentConditions", "days", "resolvedAddress"];
+  const relevantKeys = [
+    "currentConditions",
+    "days",
+    "address",
+    "resolvedAddress",
+  ];
 
   relevantKeys.forEach((key) => (filteredData[key] = weatherData[key]));
 
@@ -79,6 +84,7 @@ const filterWeatherData = (weatherData) => {
   filteredData.resolvedAddress = capitalizeFirstLetters(
     filteredData.resolvedAddress,
   );
+  filteredData.address = capitalizeFirstLetters(filteredData.address);
 
   return filteredData;
 };
