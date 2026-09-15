@@ -1,13 +1,14 @@
 /**
  * Fetches weather data of a given location from the Visual Crossing API
  * @param {string} location The location to fetch the weather data of
- * @returns The fetched weather data
+ * @returns The fetched weather data, or the status code in case of an HTTP error
  */
 const fetchWeatherData = async (location) => {
   let weatherData;
+  let response;
 
   try {
-    const response = await fetch(
+    response = await fetch(
       `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days,current&key=UWVR4ND6M2ZRGH52PL6SMFYEN&contentType=json`,
     );
     if (!response.ok) {
@@ -17,6 +18,7 @@ const fetchWeatherData = async (location) => {
     weatherData = await response.json();
   } catch (error) {
     console.error(error);
+    return response.status;
   }
 
   return weatherData;
@@ -45,6 +47,12 @@ const filterConditions = (conditions) => {
   return filteredConditions;
 };
 
+/**
+ * Filters a given object representing the weather data to
+ * only hold the relevant data for the app
+ * @param {object} weatherData The weatherData object to filter
+ * @return {object} The filtered weatherData object
+ */
 const filterWeatherData = (weatherData) => {
   const filteredData = {};
   const relevantKeys = ["currentConditions", "days", "resolvedAddress"];
