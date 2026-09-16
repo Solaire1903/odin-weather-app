@@ -7,7 +7,52 @@
 body {
   min-height: 100vh;
 
+  display: grid;
+  grid-template-rows: 1fr 10fr;  
+}
+
+header {
+  background-color: darkblue;
+  color: white;
+
+  grid-row: 1 / span 1;
+
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+#content-area {
+  grid-row: 2 /span 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+#current-weather-content {
+  height: 270px;
+  width: 200px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#current-weather-icon {
+  height: 200px;
+}
+
+#current-temperature {
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+}
+
+#current-feelslike {
+  display: flex;
   align-items: center;
 }

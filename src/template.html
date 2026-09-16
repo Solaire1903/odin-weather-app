@@ -7,11 +7,22 @@
   </head>
 
   <body>
-    <form novalidate>
-      <label for="location-input">Enter Location:</label>
-      <input type="text" id="location-input" />
+    <header>
+      <h1>Weather App</h1>
+    </header>
 
-      <button type="submit">Search</button>
-    </form>
+    <div id="content-area">
+      <div id="current-weather-content">
+        <img src="" alt="" id="current-weather-icon" />
+        <span id="current-temperature"></span>
+        <span id="current-feelslike"></span>
+      </div>
+
+      <form novalidate>
+        <label for="location-input">Enter Location:</label>
+        <input type="text" id="location-input" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
   </body>
 </html>
