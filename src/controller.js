@@ -1,5 +1,9 @@
 import { fetchWeatherData, filterWeatherData } from "./model.js";
-import { bindFormListener, displayWeatherData } from "./view.js";
+import {
+  bindFormListener,
+  displayWeatherData,
+  showSearchError,
+} from "./view.js";
 
 /**
  * Takes the input from the user and updates the view accordingly
@@ -10,7 +14,8 @@ const handleUserInput = async (userInput) => {
 
   //Check if data retrieval failed with a status code number
   if (typeof weatherData === "number") {
-    console.log("Failed to get data");
+    const statusCode = weatherData;
+    showSearchError(statusCode);
     return;
   }
 

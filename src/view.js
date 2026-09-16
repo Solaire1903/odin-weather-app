@@ -1,5 +1,6 @@
 const locationForm = document.querySelector("form");
 const locationInput = document.getElementById("location-input");
+const searchError = document.getElementById("search-error");
 
 /**
  * Displays the given weather data on the page
@@ -16,7 +17,6 @@ const displayWeatherData = (weatherData) => {
   conditionsDisplay.textContent = weatherData.days[0].conditions;
 
   const iconId = weatherData.days[0].icon;
-
   import(`./weather-icons/${iconId}.svg`).then((module) => {
     currentWeatherIcon.src = module.default;
     currentWeatherIcon.alt = weatherData.days[0].conditions;
@@ -24,6 +24,25 @@ const displayWeatherData = (weatherData) => {
 
   currentTemp.textContent = `Temperature: ${weatherData.currentConditions.temp} °C`;
   currentFeelslike.textContent = `Feels like ${weatherData.currentConditions.feelslike} °C`;
+
+  searchError.textContent = "";
+};
+
+const showSearchError = (statusCode) => {
+  switch (statusCode) {
+    case 400:
+      searchError.textContent =
+        "No weather data found for this location, try another one";
+      break;
+    case 401:
+    case 402:
+    case 404:
+      searchError.textContent =
+        "A problem occured in the program, contact the developer or try again later";
+      break;
+    case 500:
+      searchError.textContent = "Internal server error, try again later";
+  }
 };
 
 /**
@@ -38,4 +57,4 @@ const bindFormListener = (handleUserInput) => {
   });
 };
 
-export { bindFormListener, displayWeatherData };
+export { bindFormListener, displayWeatherData, showSearchError };
