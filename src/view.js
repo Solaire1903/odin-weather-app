@@ -4,11 +4,20 @@ const locationInput = document.getElementById("location-input");
 const displayWeatherData = (weatherData) => {
   const locationDisplay = document.getElementById("location-display");
   const conditionsDisplay = document.getElementById("description-display");
+  const currentWeatherIcon = document.getElementById("current-weather-icon");
   const currentTemp = document.getElementById("current-temperature");
   const currentFeelslike = document.getElementById("current-feelslike");
 
   locationDisplay.textContent = `${weatherData.address} (${weatherData.resolvedAddress})`;
   conditionsDisplay.textContent = weatherData.days[0].conditions;
+
+  const iconId = weatherData.days[0].icon;
+
+  import(`./weather-icons/${iconId}.svg`).then((module) => {
+    currentWeatherIcon.src = module.default;
+    currentWeatherIcon.alt = weatherData.days[0].conditions;
+  });
+
   currentTemp.textContent = `Temperature: ${weatherData.currentConditions.temp} °C`;
   currentFeelslike.textContent = `Feels like ${weatherData.currentConditions.feelslike} °C`;
 };

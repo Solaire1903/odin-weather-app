@@ -14,8 +14,6 @@ const handleUserInput = async (userInput) => {
     return;
   }
 
-  console.log(weatherData);
-
   weatherData = filterWeatherData(weatherData);
   displayWeatherData(weatherData);
 };
