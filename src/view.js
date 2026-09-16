@@ -42,6 +42,7 @@ const showSearchError = (statusCode) => {
       break;
     case 500:
       searchError.textContent = "Internal server error, try again later";
+      break;
   }
 };
 
