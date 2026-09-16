@@ -28,6 +28,10 @@ const displayWeatherData = (weatherData) => {
   searchError.textContent = "";
 };
 
+/**
+ * Displays an error warning on the page, depending on the passed status code
+ * @param {number} statusCode The HTTP Status Code to show the error for
+ */
 const showSearchError = (statusCode) => {
   switch (statusCode) {
     case 400:
