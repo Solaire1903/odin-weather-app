@@ -1,6 +1,10 @@
 const locationForm = document.querySelector("form");
 const locationInput = document.getElementById("location-input");
 
+/**
+ * Displays the given weather data on the page
+ * @param {object} weatherData The weather data to display
+ */
 const displayWeatherData = (weatherData) => {
   const locationDisplay = document.getElementById("location-display");
   const conditionsDisplay = document.getElementById("description-display");
