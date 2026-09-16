@@ -51,7 +51,7 @@ const filterConditions = (conditions) => {
    * which means it represents the conditions of a day
    */
   if ("tempmax" in conditions) {
-    const dayKeys = ["datetime", "description", "tempmax", "tempmin"];
+    const dayKeys = ["datetime", "conditions", "tempmax", "tempmin"];
     relevantKeys = relevantKeys.concat(dayKeys);
   }
 
