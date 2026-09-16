@@ -1,5 +1,5 @@
 import { fetchWeatherData, filterWeatherData } from "./model.js";
-import { bindFormListener } from "./view.js";
+import { bindFormListener, displayWeatherData } from "./view.js";
 
 /**
  * Takes the input from the user and updates the view accordingly
@@ -14,7 +14,8 @@ const handleUserInput = async (userInput) => {
     return;
   }
 
-  console.log(filterWeatherData(weatherData));
+  weatherData = filterWeatherData(weatherData);
+  displayWeatherData(weatherData);
 };
 
 /**

@@ -33,12 +33,21 @@ header {
 }
 
 #current-weather-content {
-  height: 270px;
+  height: 320px;
   width: 200px;
   padding: 10px;
 
   display: flex;
   flex-direction: column;
+}
+
+#location-display {
+  height: 50px;
+  text-wrap: nowrap;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #current-weather-icon {
@@ -49,11 +58,13 @@ header {
   height: 40px;
 
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 #current-feelslike {
   height: 30px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
