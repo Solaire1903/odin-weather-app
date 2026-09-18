@@ -70,7 +70,6 @@ const filterWeatherData = (weatherData) => {
   const filteredData = {};
   const relevantKeys = [
     "currentConditions",
-    "days",
     "address",
     "resolvedAddress",
   ];
@@ -80,7 +79,7 @@ const filterWeatherData = (weatherData) => {
   filteredData.currentConditions = filterConditions(
     filteredData.currentConditions,
   );
-  filteredData.days = filteredData.days.map((day) => filterConditions(day));
+  filteredData.day = filterConditions(weatherData.days[0]);
   filteredData.resolvedAddress = capitalizeFirstLetters(
     filteredData.resolvedAddress,
   );

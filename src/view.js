@@ -16,19 +16,19 @@ const displayWeatherData = (weatherData) => {
   const currentTemp = document.getElementById("current-temperature");
   const currentFeelslike = document.getElementById("current-feelslike");
 
-  const dateValues = weatherData.days[0].datetime.split("-");
+  const dateValues = weatherData.day.datetime.split("-");
   datetimeDisplay.textContent = format(
     new Date(dateValues[0], dateValues[1] - 1, dateValues[2]),
     "MMMM do yyyy",
   );
 
   locationDisplay.textContent = `${weatherData.address} (${weatherData.resolvedAddress})`;
-  conditionsDisplay.textContent = weatherData.days[0].conditions;
+  conditionsDisplay.textContent = weatherData.day.conditions;
 
-  const iconId = weatherData.days[0].icon;
+  const iconId = weatherData.day.icon;
   import(`./weather-icons/${iconId}.svg`).then((module) => {
     currentWeatherIcon.src = module.default;
-    currentWeatherIcon.alt = weatherData.days[0].conditions;
+    currentWeatherIcon.alt = weatherData.day.conditions;
   });
 
   currentTemp.textContent = `Temperature: ${weatherData.currentConditions.temp} °C`;
