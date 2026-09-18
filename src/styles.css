@@ -42,20 +42,20 @@ header {
   gap: 10px;
 }
 
+#current-weather-icon {
+  height: 150px;
+  width: 150;
+}
+
 #datetime-display,
 #location-display {
   height: 50px;
   text-wrap: nowrap;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
+#datetime-display,
+#location-display,
 #current-weather-icon {
-  height: 150px;
-  width: 150;
-
   display: flex;
   justify-content: center;
   align-items: center;
