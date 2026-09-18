@@ -80,6 +80,16 @@ header {
   gap: 5px;
 }
 
+#temperature-toggle-checkbox {
+  height: 15px;
+  width: 15px;
+}
+
+#temperature-toggle > label,
+#temperature-toggle-checkbox {
+  cursor: pointer;
+}
+
 form {
   margin-top: 150px;
 }
