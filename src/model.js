@@ -85,7 +85,6 @@ const filterWeatherData = (weatherData) => {
   );
   filteredData.address = capitalizeFirstLetters(filteredData.address);
 
-  console.log(filteredData);
   return filteredData;
 };
 
