@@ -59,6 +59,8 @@ const bindFormListener = (handleUserInput) => {
     event.preventDefault();
 
     handleUserInput(locationInput.value);
+
+    locationInput.value = "";
   });
 };
 
