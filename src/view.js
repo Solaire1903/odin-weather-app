@@ -1,5 +1,8 @@
 import { format } from "date-fns";
 
+const temperatureCheckbox = document.getElementById(
+  "temperature-toggle-checkbox",
+);
 const locationForm = document.querySelector("form");
 const locationInput = document.getElementById("location-input");
 const searchError = document.getElementById("search-error");
@@ -16,8 +19,9 @@ const displayWeatherIcon = (iconId, altText) => {
 /**
  * Displays the given weather data on the page
  * @param {object} weatherData The weather data to display
+ * @param {boolean} showInFahrenheit Checks if the value should be retrieved as Celsius or Fahrenheit
  */
-const displayWeatherData = (weatherData) => {
+const displayWeatherData = (weatherData, showInFahrenheit) => {
   const datetimeDisplay = document.getElementById("datetime-display");
   const locationDisplay = document.getElementById("location-display");
   const conditionsDisplay = document.getElementById("description-display");
@@ -34,10 +38,12 @@ const displayWeatherData = (weatherData) => {
 
   locationDisplay.textContent = `${weatherData.address} (${weatherData.resolvedAddress})`;
   conditionsDisplay.textContent = weatherData.day.conditions;
-  currentTemp.textContent = `Temperature: ${weatherData.currentConditions.temp} °C`;
-  currentFeelslike.textContent = `Feels like ${weatherData.currentConditions.feelslike} °C`;
-  tempmaxDisplay.textContent = `Max. Temp.: ${weatherData.day.tempmax} °C`;
-  tempminDisplay.textContent = `Min. Temp.: ${weatherData.day.tempmin} °C`;
+
+  const temperatureSign = showInFahrenheit ? "°F" : "°C";
+  currentTemp.textContent = `Temperature: ${weatherData.currentConditions.temp} ${temperatureSign}`;
+  currentFeelslike.textContent = `Feels like ${weatherData.currentConditions.feelslike} ${temperatureSign}`;
+  tempmaxDisplay.textContent = `Max. Temp.: ${weatherData.day.tempmax} ${temperatureSign}`;
+  tempminDisplay.textContent = `Min. Temp.: ${weatherData.day.tempmin} ${temperatureSign}`;
 
   searchError.textContent = "";
 };
@@ -72,7 +78,9 @@ const bindFormListener = (handleUserInput) => {
   locationForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    handleUserInput(locationInput.value);
+    const showInFahrenheit = temperatureCheckbox.checked ? true : false;
+
+    handleUserInput(locationInput.value, showInFahrenheit);
 
     locationInput.value = "";
   });
