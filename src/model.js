@@ -88,4 +88,27 @@ const filterWeatherData = (weatherData) => {
   return filteredData;
 };
 
-export { fetchWeatherData, filterWeatherData };
+/**
+ * Converts a Celsius temperature value into Fahrenheit
+ * @param {number} temperature The temperature in Celsius to convert
+ * @returns The converted temperature in Fahrenheit
+ */
+const convertCelsiusToFahrenheit = (temperature) => {
+  return temperature * 1.8 + 32;
+};
+
+/**
+ * Converts a Fahrenheit temperature value into Celsius
+ * @param {number} temperature The temperature in Fahrenheit to convert
+ * @returns The converted temperature in Celsius
+ */
+const convertFahrenheitToCelsius = (temperature) => {
+  return (temperature - 32) / 1.8;
+};
+
+export {
+  fetchWeatherData,
+  filterWeatherData,
+  convertCelsiusToFahrenheit,
+  convertFahrenheitToCelsius,
+};
