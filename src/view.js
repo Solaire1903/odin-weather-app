@@ -4,6 +4,15 @@ const locationForm = document.querySelector("form");
 const locationInput = document.getElementById("location-input");
 const searchError = document.getElementById("search-error");
 
+const displayWeatherIcon = (iconId, altText) => {
+  const currentWeatherIcon = document.getElementById("current-weather-icon");
+
+  import(`./weather-icons/${iconId}.svg`).then((module) => {
+    currentWeatherIcon.src = module.default;
+    currentWeatherIcon.alt = altText;
+  });
+};
+
 /**
  * Displays the given weather data on the page
  * @param {object} weatherData The weather data to display
@@ -12,7 +21,6 @@ const displayWeatherData = (weatherData) => {
   const datetimeDisplay = document.getElementById("datetime-display");
   const locationDisplay = document.getElementById("location-display");
   const conditionsDisplay = document.getElementById("description-display");
-  const currentWeatherIcon = document.getElementById("current-weather-icon");
   const currentTemp = document.getElementById("current-temperature");
   const currentFeelslike = document.getElementById("current-feelslike");
   const tempminDisplay = document.getElementById("tempmin-display");
@@ -26,13 +34,6 @@ const displayWeatherData = (weatherData) => {
 
   locationDisplay.textContent = `${weatherData.address} (${weatherData.resolvedAddress})`;
   conditionsDisplay.textContent = weatherData.day.conditions;
-
-  const iconId = weatherData.currentConditions.icon;
-  import(`./weather-icons/${iconId}.svg`).then((module) => {
-    currentWeatherIcon.src = module.default;
-    currentWeatherIcon.alt = weatherData.day.conditions;
-  });
-
   currentTemp.textContent = `Temperature: ${weatherData.currentConditions.temp} °C`;
   currentFeelslike.textContent = `Feels like ${weatherData.currentConditions.feelslike} °C`;
   tempmaxDisplay.textContent = `Max. Temp.: ${weatherData.day.tempmax} °C`;
@@ -77,4 +78,9 @@ const bindFormListener = (handleUserInput) => {
   });
 };
 
-export { bindFormListener, displayWeatherData, showSearchError };
+export {
+  bindFormListener,
+  displayWeatherData,
+  displayWeatherIcon,
+  showSearchError,
+};

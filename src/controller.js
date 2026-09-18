@@ -2,6 +2,7 @@ import { fetchWeatherData, filterWeatherData } from "./model.js";
 import {
   bindFormListener,
   displayWeatherData,
+  displayWeatherIcon,
   showSearchError,
 } from "./view.js";
 
@@ -21,6 +22,10 @@ const handleUserInput = async (userInput, fetchInFahrenheit) => {
   }
 
   weatherData = filterWeatherData(weatherData);
+  displayWeatherIcon(
+    weatherData.currentConditions.icon,
+    weatherData.day.conditions,
+  );
   displayWeatherData(weatherData);
 };
 
