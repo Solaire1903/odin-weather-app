@@ -68,17 +68,17 @@ const filterConditions = (conditions) => {
  */
 const filterWeatherData = (weatherData) => {
   const filteredData = {};
-  const relevantKeys = [
-    "currentConditions",
-    "address",
-    "resolvedAddress",
-  ];
+  const relevantKeys = ["currentConditions", "address", "resolvedAddress"];
 
   relevantKeys.forEach((key) => (filteredData[key] = weatherData[key]));
 
   filteredData.currentConditions = filterConditions(
     filteredData.currentConditions,
   );
+  /**"days" was not included in the relevantKeys array because I
+   * did not want to filter all the days. I specifically only
+   * filter only the first day out here
+   */
   filteredData.day = filterConditions(weatherData.days[0]);
   filteredData.resolvedAddress = capitalizeFirstLetters(
     filteredData.resolvedAddress,
