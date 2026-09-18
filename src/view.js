@@ -25,7 +25,7 @@ const displayWeatherData = (weatherData) => {
   locationDisplay.textContent = `${weatherData.address} (${weatherData.resolvedAddress})`;
   conditionsDisplay.textContent = weatherData.day.conditions;
 
-  const iconId = weatherData.day.icon;
+  const iconId = weatherData.currentConditions.icon;
   import(`./weather-icons/${iconId}.svg`).then((module) => {
     currentWeatherIcon.src = module.default;
     currentWeatherIcon.alt = weatherData.day.conditions;

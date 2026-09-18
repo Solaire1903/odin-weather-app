@@ -51,8 +51,7 @@ const filterConditions = (conditions) => {
    * which means it represents the conditions of a day
    */
   if ("tempmax" in conditions) {
-    const dayKeys = ["datetime", "conditions", "tempmax", "tempmin"];
-    relevantKeys = relevantKeys.concat(dayKeys);
+    relevantKeys = ["datetime", "conditions", "tempmax", "tempmin"];
   }
 
   relevantKeys.forEach((key) => (filteredConditions[key] = conditions[key]));
@@ -75,9 +74,10 @@ const filterWeatherData = (weatherData) => {
   filteredData.currentConditions = filterConditions(
     filteredData.currentConditions,
   );
-  /**"days" was not included in the relevantKeys array because I
-   * did not want to filter all the days. I specifically only
-   * filter only the first day out here
+  /**
+   * "days" was not included in the relevantKeys array because I
+   * did not want to filter all the days. I specifically filter
+   * only the first day out here
    */
   filteredData.day = filterConditions(weatherData.days[0]);
   filteredData.resolvedAddress = capitalizeFirstLetters(
@@ -85,6 +85,7 @@ const filterWeatherData = (weatherData) => {
   );
   filteredData.address = capitalizeFirstLetters(filteredData.address);
 
+  console.log(filteredData);
   return filteredData;
 };
 
