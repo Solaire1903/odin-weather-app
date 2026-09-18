@@ -74,6 +74,12 @@ header {
   height: 30px;
 }
 
+#temperature-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 form {
   margin-top: 150px;
 }
