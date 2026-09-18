@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 const locationForm = document.querySelector("form");
 const locationInput = document.getElementById("location-input");
 const searchError = document.getElementById("search-error");
@@ -7,11 +9,18 @@ const searchError = document.getElementById("search-error");
  * @param {object} weatherData The weather data to display
  */
 const displayWeatherData = (weatherData) => {
+  const datetimeDisplay = document.getElementById("datetime-display");
   const locationDisplay = document.getElementById("location-display");
   const conditionsDisplay = document.getElementById("description-display");
   const currentWeatherIcon = document.getElementById("current-weather-icon");
   const currentTemp = document.getElementById("current-temperature");
   const currentFeelslike = document.getElementById("current-feelslike");
+
+  const dateValues = weatherData.days[0].datetime.split("-");
+  datetimeDisplay.textContent = format(
+    new Date(dateValues[0], dateValues[1] - 1, dateValues[2]),
+    "MMMM do yyyy",
+  );
 
   locationDisplay.textContent = `${weatherData.address} (${weatherData.resolvedAddress})`;
   conditionsDisplay.textContent = weatherData.days[0].conditions;
