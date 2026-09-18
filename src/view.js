@@ -15,6 +15,8 @@ const displayWeatherData = (weatherData) => {
   const currentWeatherIcon = document.getElementById("current-weather-icon");
   const currentTemp = document.getElementById("current-temperature");
   const currentFeelslike = document.getElementById("current-feelslike");
+  const tempminDisplay = document.getElementById("tempmin-display");
+  const tempmaxDisplay = document.getElementById("tempmax-display");
 
   const dateValues = weatherData.day.datetime.split("-");
   datetimeDisplay.textContent = format(
@@ -33,6 +35,8 @@ const displayWeatherData = (weatherData) => {
 
   currentTemp.textContent = `Temperature: ${weatherData.currentConditions.temp} °C`;
   currentFeelslike.textContent = `Feels like ${weatherData.currentConditions.feelslike} °C`;
+  tempmaxDisplay.textContent = `Max. Temp.: ${weatherData.day.tempmax} °C`;
+  tempminDisplay.textContent = `Min. Temp.: ${weatherData.day.tempmin} °C`;
 
   searchError.textContent = "";
 };
