@@ -8,9 +8,10 @@ import {
 /**
  * Takes the input from the user and updates the view accordingly
  * @param {string} userInput The user input, should be a location
+ * @param {boolean} fetchInFahrenheit Checks if the value should be retrieved as Celsius or Fahrenheit
  */
-const handleUserInput = async (userInput) => {
-  let weatherData = await fetchWeatherData(userInput);
+const handleUserInput = async (userInput, fetchInFahrenheit) => {
+  let weatherData = await fetchWeatherData(userInput, fetchInFahrenheit);
 
   //Check if data retrieval failed with a status code number
   if (typeof weatherData === "number") {

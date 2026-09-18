@@ -14,15 +14,19 @@ const capitalizeFirstLetters = (string) => {
 /**
  * Fetches weather data of a given location from the Visual Crossing API
  * @param {string} location The location to fetch the weather data of
+ * @param {boolean} fetchInFahrenheit Checks if the value should be retrieved as Celsius or Fahrenheit
  * @returns The fetched weather data, or the status code in case of an HTTP error
  */
-const fetchWeatherData = async (location) => {
+const fetchWeatherData = async (location, fetchInFahrenheit) => {
   let weatherData;
   let response;
+  let unitGroup;
+
+  unitGroup = fetchInFahrenheit ? "us" : "metric";
 
   try {
     response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&include=days,current&key=UWVR4ND6M2ZRGH52PL6SMFYEN&contentType=json`,
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=${unitGroup}&include=days,current&key=UWVR4ND6M2ZRGH52PL6SMFYEN&contentType=json`,
     );
     if (!response.ok) {
       throw new Error(`Status Code: ${response.status}`);
