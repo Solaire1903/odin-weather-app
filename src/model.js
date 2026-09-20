@@ -13,10 +13,18 @@ const capitalizeFirstLetters = (string) => {
   return words.join(" ");
 };
 
+/**
+ * Stores the given weatherData
+ * @param {object} weatherData The weather data to store
+ */
 const storeWeatherData = (weatherData) => {
   weatherDataStorage = weatherData;
 };
 
+/**
+ * Gets the stored weather data
+ * @returns The stored weather data
+ */
 const getStoredWeatherData = () => {
   return weatherDataStorage;
 };
@@ -48,7 +56,6 @@ const fetchWeatherData = async (location, fetchInFahrenheit) => {
     return response.status;
   }
 
-  storeWeatherData(weatherData);
   return weatherData;
 };
 
@@ -124,6 +131,7 @@ const convertFahrenheitToCelsius = (temperature) => {
 export {
   fetchWeatherData,
   filterWeatherData,
+  storeWeatherData,
   getStoredWeatherData,
   convertCelsiusToFahrenheit,
   convertFahrenheitToCelsius,

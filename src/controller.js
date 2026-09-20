@@ -1,4 +1,11 @@
-import { fetchWeatherData, filterWeatherData } from "./model.js";
+import {
+  fetchWeatherData,
+  filterWeatherData,
+  storeWeatherData,
+  getStoredWeatherData,
+  convertCelsiusToFahrenheit,
+  convertFahrenheitToCelsius,
+} from "./model.js";
 import {
   bindFormListener,
   bindToggleListener,
@@ -6,6 +13,27 @@ import {
   displayWeatherIcon,
   showSearchError,
 } from "./view.js";
+
+const handleCheckboxClick = (showInFahrenheit) => {
+  let weatherData = getStoredWeatherData();
+  if (weatherData === undefined) return;
+
+  if (showInFahrenheit) {
+    weatherData.currentConditions.temp = convertCelsiusToFahrenheit(weatherData.currentConditions.temp);
+    weatherData.currentConditions.feelslike = convertCelsiusToFahrenheit(weatherData.currentConditions.feelslike);
+    weatherData.day.tempmin = convertCelsiusToFahrenheit(weatherData.day.tempmin);
+    weatherData.day.tempmax = convertCelsiusToFahrenheit(weatherData.day.tempmax);
+  } else {
+    weatherData.currentConditions.temp = convertFahrenheitToCelsius(weatherData.currentConditions.temp);
+    weatherData.currentConditions.feelslike = convertFahrenheitToCelsius(weatherData.currentConditions.feelslike);
+    weatherData.day.tempmin = convertFahrenheitToCelsius(weatherData.day.tempmin);
+    weatherData.day.tempmax = convertFahrenheitToCelsius(weatherData.day.tempmax);
+  }
+
+  storeWeatherData(weatherData);
+  console.log(weatherData);
+  displayWeatherData(weatherData, showInFahrenheit);
+};
 
 /**
  * Takes the input from the user and updates the view accordingly
@@ -23,6 +51,7 @@ const handleUserInput = async (userInput, showInFahrenheit) => {
   }
 
   weatherData = filterWeatherData(weatherData);
+  storeWeatherData(weatherData);
   displayWeatherIcon(
     weatherData.currentConditions.icon,
     weatherData.day.conditions,
@@ -34,7 +63,7 @@ const handleUserInput = async (userInput, showInFahrenheit) => {
  * Initializes and loads the app
  */
 const loadApp = () => {
-  bindToggleListener();
+  bindToggleListener(handleCheckboxClick);
   bindFormListener(handleUserInput);
 };
 

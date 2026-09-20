@@ -87,12 +87,12 @@ const bindFormListener = (handleUserInput) => {
   });
 };
 
-const bindToggleListener = () => [
+const bindToggleListener = (handleCheckboxClick) => [
   temperatureToggle.addEventListener("click", (event) => {
     if (event.target !== temperatureCheckbox) return;
     event.stopImmediatePropagation();
 
-    console.log("Test");
+    handleCheckboxClick(temperatureCheckbox.checked);
   })
 ]
 
