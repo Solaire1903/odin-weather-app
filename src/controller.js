@@ -1,6 +1,7 @@
 import { fetchWeatherData, filterWeatherData } from "./model.js";
 import {
   bindFormListener,
+  bindToggleListener,
   displayWeatherData,
   displayWeatherIcon,
   showSearchError,
@@ -33,6 +34,7 @@ const handleUserInput = async (userInput, showInFahrenheit) => {
  * Initializes and loads the app
  */
 const loadApp = () => {
+  bindToggleListener();
   bindFormListener(handleUserInput);
 };
 

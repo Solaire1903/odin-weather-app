@@ -13,6 +13,14 @@ const capitalizeFirstLetters = (string) => {
   return words.join(" ");
 };
 
+const storeWeatherData = (weatherData) => {
+  weatherDataStorage = weatherData;
+};
+
+const getStoredWeatherData = () => {
+  return weatherDataStorage;
+};
+
 /**
  * Fetches weather data of a given location from the Visual Crossing API
  * @param {string} location The location to fetch the weather data of
@@ -40,15 +48,8 @@ const fetchWeatherData = async (location, fetchInFahrenheit) => {
     return response.status;
   }
 
+  storeWeatherData(weatherData);
   return weatherData;
-};
-
-const storeWeatherData = (weatherData) => {
-  weatherDataStorage = weatherData;
-};
-
-const getStoredWeatherData = () => {
-  return weatherDataStorage;
 };
 
 /**
@@ -123,7 +124,6 @@ const convertFahrenheitToCelsius = (temperature) => {
 export {
   fetchWeatherData,
   filterWeatherData,
-  storeWeatherData,
   getStoredWeatherData,
   convertCelsiusToFahrenheit,
   convertFahrenheitToCelsius,

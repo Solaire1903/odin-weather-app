@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 
+const temperatureToggle = document.getElementById("temperature-toggle");
 const temperatureCheckbox = document.getElementById(
   "temperature-toggle-checkbox",
 );
@@ -86,8 +87,18 @@ const bindFormListener = (handleUserInput) => {
   });
 };
 
+const bindToggleListener = () => [
+  temperatureToggle.addEventListener("click", (event) => {
+    if (event.target !== temperatureCheckbox) return;
+    event.stopImmediatePropagation();
+
+    console.log("Test");
+  })
+]
+
 export {
   bindFormListener,
+  bindToggleListener,
   displayWeatherData,
   displayWeatherIcon,
   showSearchError,
