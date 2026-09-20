@@ -8,6 +8,11 @@ const locationForm = document.querySelector("form");
 const locationInput = document.getElementById("location-input");
 const searchError = document.getElementById("search-error");
 
+/**
+ * Displays a weather icon on the page based on the given string
+ * @param {string} iconId The string which holds the information of what icon to display
+ * @param {string} altText The alt text, in case of the image not being able to be displayed
+ */
 const displayWeatherIcon = (iconId, altText) => {
   const currentWeatherIcon = document.getElementById("current-weather-icon");
 
@@ -87,14 +92,18 @@ const bindFormListener = (handleUserInput) => {
   });
 };
 
+/**
+ * Binds an event listener to the checkbox toggle area
+ * @param {function} handleCheckboxClick The function that handles checkbox click
+ */
 const bindToggleListener = (handleCheckboxClick) => [
   temperatureToggle.addEventListener("click", (event) => {
     if (event.target !== temperatureCheckbox) return;
     event.stopImmediatePropagation();
 
     handleCheckboxClick(temperatureCheckbox.checked);
-  })
-]
+  }),
+];
 
 export {
   bindFormListener,

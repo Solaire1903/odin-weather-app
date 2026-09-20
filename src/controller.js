@@ -14,20 +14,41 @@ import {
   showSearchError,
 } from "./view.js";
 
+/**
+ * Converts the weather data temp values in Celsius or Fahrenheit (depending on checkbox state),
+ * stores that data and updates the view
+ * @param {boolean} showInFahrenheit Checks if the temp values should be shown in Celsius or Fahrenheit
+ */
 const handleCheckboxClick = (showInFahrenheit) => {
   let weatherData = getStoredWeatherData();
   if (weatherData === undefined) return;
 
   if (showInFahrenheit) {
-    weatherData.currentConditions.temp = convertCelsiusToFahrenheit(weatherData.currentConditions.temp);
-    weatherData.currentConditions.feelslike = convertCelsiusToFahrenheit(weatherData.currentConditions.feelslike);
-    weatherData.day.tempmin = convertCelsiusToFahrenheit(weatherData.day.tempmin);
-    weatherData.day.tempmax = convertCelsiusToFahrenheit(weatherData.day.tempmax);
+    weatherData.currentConditions.temp = convertCelsiusToFahrenheit(
+      weatherData.currentConditions.temp,
+    );
+    weatherData.currentConditions.feelslike = convertCelsiusToFahrenheit(
+      weatherData.currentConditions.feelslike,
+    );
+    weatherData.day.tempmin = convertCelsiusToFahrenheit(
+      weatherData.day.tempmin,
+    );
+    weatherData.day.tempmax = convertCelsiusToFahrenheit(
+      weatherData.day.tempmax,
+    );
   } else {
-    weatherData.currentConditions.temp = convertFahrenheitToCelsius(weatherData.currentConditions.temp);
-    weatherData.currentConditions.feelslike = convertFahrenheitToCelsius(weatherData.currentConditions.feelslike);
-    weatherData.day.tempmin = convertFahrenheitToCelsius(weatherData.day.tempmin);
-    weatherData.day.tempmax = convertFahrenheitToCelsius(weatherData.day.tempmax);
+    weatherData.currentConditions.temp = convertFahrenheitToCelsius(
+      weatherData.currentConditions.temp,
+    );
+    weatherData.currentConditions.feelslike = convertFahrenheitToCelsius(
+      weatherData.currentConditions.feelslike,
+    );
+    weatherData.day.tempmin = convertFahrenheitToCelsius(
+      weatherData.day.tempmin,
+    );
+    weatherData.day.tempmax = convertFahrenheitToCelsius(
+      weatherData.day.tempmax,
+    );
   }
 
   storeWeatherData(weatherData);
