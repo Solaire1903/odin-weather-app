@@ -1,3 +1,5 @@
+let weatherDataStorage;
+
 /**
  * Capitalizes the first letters of a string
  * (first letter and every letter after a whitespace)
@@ -39,6 +41,14 @@ const fetchWeatherData = async (location, fetchInFahrenheit) => {
   }
 
   return weatherData;
+};
+
+const storeWeatherData = (weatherData) => {
+  weatherDataStorage = weatherData;
+};
+
+const getStoredWeatherData = () => {
+  return weatherDataStorage;
 };
 
 /**
@@ -113,6 +123,8 @@ const convertFahrenheitToCelsius = (temperature) => {
 export {
   fetchWeatherData,
   filterWeatherData,
+  storeWeatherData,
+  getStoredWeatherData,
   convertCelsiusToFahrenheit,
   convertFahrenheitToCelsius,
 };
