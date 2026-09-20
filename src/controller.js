@@ -31,7 +31,6 @@ const handleCheckboxClick = (showInFahrenheit) => {
   }
 
   storeWeatherData(weatherData);
-  console.log(weatherData);
   displayWeatherData(weatherData, showInFahrenheit);
 };
 

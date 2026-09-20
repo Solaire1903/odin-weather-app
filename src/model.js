@@ -116,7 +116,7 @@ const filterWeatherData = (weatherData) => {
  * @returns The converted temperature in Fahrenheit
  */
 const convertCelsiusToFahrenheit = (temperature) => {
-  return temperature * 1.8 + 32;
+  return Math.round(temperature * 1.8 + 32);
 };
 
 /**
@@ -125,7 +125,7 @@ const convertCelsiusToFahrenheit = (temperature) => {
  * @returns The converted temperature in Celsius
  */
 const convertFahrenheitToCelsius = (temperature) => {
-  return (temperature - 32) / 1.8;
+  return Math.round((temperature - 32) / 1.8);
 };
 
 export {
