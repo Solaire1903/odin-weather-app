@@ -106,6 +106,14 @@ const filterWeatherData = (weatherData) => {
     filteredData.resolvedAddress,
   );
   filteredData.address = capitalizeFirstLetters(filteredData.address);
+  filteredData.currentConditions.temp = Math.round(
+    filteredData.currentConditions.temp,
+  );
+  filteredData.currentConditions.feelslike = Math.round(
+    filteredData.currentConditions.feelslike,
+  );
+  filteredData.day.tempmin = Math.round(filteredData.day.tempmin);
+  filteredData.day.tempmax = Math.round(filteredData.day.tempmax);
 
   return filteredData;
 };
