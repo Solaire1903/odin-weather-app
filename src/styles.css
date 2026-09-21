@@ -5,6 +5,7 @@
 }
 
 body {
+  position: relative;
   min-height: 100vh;
 
   display: grid;
@@ -63,7 +64,6 @@ header {
 
 #description-display {
   height: 50px;
-  text-align: center;
 }
 
 #current-temperature {
@@ -74,7 +74,16 @@ header {
   height: 30px;
 }
 
+#description-display,
+#current-temperature,
+#current-feelslike,
+#tempmin-display,
+#tempmax-display {
+  text-align: center;
+}
+
 #temperature-toggle {
+  margin-top: 30px;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -88,6 +97,13 @@ header {
 #temperature-toggle > label,
 #temperature-toggle-checkbox {
   cursor: pointer;
+}
+
+#loading-display {
+  position: absolute;
+  top: 45%;
+  left: 48%;
+  font-size: 1.4em;
 }
 
 form {

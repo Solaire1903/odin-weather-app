@@ -81,14 +81,24 @@ const showSearchError = (statusCode) => {
  * @param {function} handleUserInput The function that handles the user input
  */
 const bindFormListener = (handleUserInput) => {
-  locationForm.addEventListener("submit", (event) => {
+  locationForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
+    const currentWeatherContent = document.getElementById(
+      "current-weather-content",
+    );
+    const searchLocation = locationInput.value;
+    const loadingDisplay = document.getElementById("loading-display");
     const showInFahrenheit = temperatureCheckbox.checked ? true : false;
 
-    handleUserInput(locationInput.value, showInFahrenheit);
-
     locationInput.value = "";
+    currentWeatherContent.style.visibility = "hidden";
+    loadingDisplay.textContent = "Loading...";
+
+    await handleUserInput(searchLocation, showInFahrenheit);
+
+    loadingDisplay.textContent = "";
+    currentWeatherContent.style.visibility = "visible";
   });
 };
 
